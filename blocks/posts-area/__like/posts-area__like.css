@@ -1,0 +1,15 @@
+.posts-area__like {
+  width: 22px;
+  height: 19px;
+  background-image: url(../../../images/empty-heart.svg);
+  transition: opacity ease-in-out 0.3s;
+}
+
+.posts-area__like:hover {
+  transition: opacity ease-in-out 0.3s;
+  opacity: 60%;
+}
+
+.posts-area__like_active {
+  background-image: url(../../../images/filled-heart.svg);
+}

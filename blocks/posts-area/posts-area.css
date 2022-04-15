@@ -1,0 +1,32 @@
+.posts-area ul {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0;
+  padding-top: 50px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+  row-gap: 20px;
+  column-gap: 17px;
+}
+
+@media screen and (max-width: 600px) {
+  .posts-area ul {
+    padding-top: 36px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .posts-area ul {
+    max-width: 581px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .posts-area ul {
+    max-width: 282px;
+    grid-template-columns: 1fr;
+  }
+}

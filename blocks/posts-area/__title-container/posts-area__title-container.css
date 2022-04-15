@@ -1,0 +1,8 @@
+.posts-area__title-container {
+  padding-top: 25px;
+  margin: 0 auto;
+  display: flex;
+  width: 246px;
+  justify-content: space-between;
+  align-items: center;
+}
