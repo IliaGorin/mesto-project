@@ -10,7 +10,7 @@
   transition: opacity ease-in-out 0.3s;
 }
 
-@media screen and (max-width: 468px) {
+@media screen and (max-width: 560px) {
   .popup__close-icon {
     width: 20px;
     height: 20px;
