@@ -8,19 +8,25 @@
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
-    <header class="header"></header>
+    <header class="header">
+      <img src="./images/Mesto_logo.svg" alt="Логотип" class="header__logo" />
+    </header>
     <main>
       <section class="profile">
-        <div class="profile__avatar"></div>
+        <img
+          src="./images/Kusto_portrait.jpg"
+          alt="Аватар"
+          class="profile__avatar"
+        />
         <div class="profile__info">
-          <h2 class="profile__name">Жак-Ив Кусто</h2>
-          <div class="profile__edit-button"></div>
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button"></button>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <div class="profile__add-button"></div>
+        <button class="profile__add-button"></button>
       </section>
       <section class="posts-area" aria-label="секция с карточками">
-        <ul>
+        <ul class="posts-area__posts-list">
           <li class="posts-area__post-card">
             <img
               src="./images/Tyumen.jpg"
@@ -28,8 +34,8 @@
               class="posts-area__image"
             />
             <div class="posts-area__title-container">
-              <div class="posts-area__title">Тюмень</div>
-              <div class="posts-area__like"></div>
+              <h2 class="posts-area__title">Тюмень</h2>
+              <button class="posts-area__like"></button>
             </div>
           </li>
           <li class="posts-area__post-card">
@@ -39,8 +45,8 @@
               class="posts-area__image"
             />
             <div class="posts-area__title-container">
-              <div class="posts-area__title">Гора Эльбрус</div>
-              <div class="posts-area__like"></div>
+              <h2 class="posts-area__title">Гора Эльбрус</h2>
+              <button class="posts-area__like"></button>
             </div>
           </li>
           <li class="posts-area__post-card">
@@ -50,8 +56,8 @@
               class="posts-area__image"
             />
             <div class="posts-area__title-container">
-              <div class="posts-area__title">Домбай</div>
-              <div class="posts-area__like"></div>
+              <h2 class="posts-area__title">Домбай</h2>
+              <button class="posts-area__like"></button>
             </div>
           </li>
           <li class="posts-area__post-card">
@@ -61,8 +67,8 @@
               class="posts-area__image"
             />
             <div class="posts-area__title-container">
-              <div class="posts-area__title">Боржоми</div>
-              <div class="posts-area__like"></div>
+              <h2 class="posts-area__title">Боржоми</h2>
+              <button class="posts-area__like"></button>
             </div>
           </li>
           <li class="posts-area__post-card">
@@ -72,8 +78,8 @@
               class="posts-area__image"
             />
             <div class="posts-area__title-container">
-              <div class="posts-area__title">Черное море</div>
-              <div class="posts-area__like"></div>
+              <h2 class="posts-area__title">Черное море</h2>
+              <button class="posts-area__like"></button>
             </div>
           </li>
           <li class="posts-area__post-card">
@@ -83,8 +89,8 @@
               class="posts-area__image"
             />
             <div class="posts-area__title-container">
-              <div class="posts-area__title">Карачаево-Черкесская</div>
-              <div class="posts-area__like"></div>
+              <h2 class="posts-area__title">Карачаево-Черкесская</h2>
+              <button class="posts-area__like"></button>
             </div>
           </li>
         </ul>
@@ -94,31 +100,20 @@
       <p class="footer__title">© 2020 Mesto Russia</p>
     </footer>
     <!-- popup_opened -->
-    <section
-      class="popup popup_opened"
-      aria-label="всплывающее окно формы регистрации"
-    >
-      <section class="popup__container">
-        <div class="popup__close-icon"></div>
+    <section class="popup" aria-label="всплывающее окно формы регистрации">
+      <div class="popup__container">
+        <button class="popup__close-icon"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form>
-          <label>
-            <input
-              class="popup__input-name"
-              type="text"
-              placeholder="Жак-Ив Кусто"
-            />
-          </label>
-          <label>
-            <input
-              class="popup__input-description"
-              type="text"
-              placeholder="Исследователь океана"
-            />
-          </label>
+        <form class="popup_form" name="userAddInfo">
+          <input class="popup__input" type="text" placeholder="Жак-Ив Кусто" />
+          <input
+            class="popup__input"
+            type="text"
+            placeholder="Исследователь океана"
+          />
           <button type="submit" class="popup__button-save"></button>
         </form>
-      </section>
+      </div>
     </section>
   </body>
 </html>

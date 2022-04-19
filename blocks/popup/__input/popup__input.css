@@ -1,6 +1,10 @@
-.popup__input-description {
+.popup__input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 0;
   margin-left: 36px;
-  margin-top: 30px;
+  margin-top: 33px;
   width: 358px;
   border-top: 0;
   border-right: 0;
@@ -9,13 +13,13 @@
 }
 
 @media screen and (max-width: 560px) {
-  .popup__input-description {
+  .popup__input {
     margin-left: 22px;
     margin-top: 30px;
     width: 238px;
   }
 }
 
-.popup__input-description:focus {
+.popup__input:focus {
   outline: 0;
 }

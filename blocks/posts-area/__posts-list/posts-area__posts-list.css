@@ -1,4 +1,4 @@
-.posts-area ul {
+.posts-area__posts-list {
   max-width: 880px;
   margin: 0 auto;
   padding: 0;
@@ -12,20 +12,20 @@
 }
 
 @media screen and (max-width: 600px) {
-  .posts-area ul {
+  .posts-area__posts-list {
     padding-top: 36px;
   }
 }
 
 @media screen and (max-width: 900px) {
-  .posts-area ul {
+  .posts-area__posts-list {
     max-width: 581px;
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .posts-area ul {
+  .posts-area__posts-list {
     max-width: 282px;
     grid-template-columns: 1fr;
   }

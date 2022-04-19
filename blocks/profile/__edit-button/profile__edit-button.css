@@ -1,6 +1,9 @@
 .profile__edit-button {
+  border: 0;
+  padding: 0;
   width: 24px;
   height: 24px;
+  background-color: transparent;
   background-image: url(../../../images/Edit-Button.svg);
   transition: opacity ease-in-out 0.3s;
 }
@@ -8,6 +11,7 @@
 .profile__edit-button:hover {
   transition: opacity ease-in-out 0.3s;
   opacity: 60%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 900px) {
