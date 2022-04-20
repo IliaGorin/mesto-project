@@ -20,10 +20,10 @@
         />
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button"></button>
+          <button type="button" class="profile__edit-button"></button>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"></button>
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="posts-area" aria-label="секция с карточками">
         <ul class="posts-area__posts-list">
@@ -35,7 +35,7 @@
             />
             <div class="posts-area__title-container">
               <h2 class="posts-area__title">Тюмень</h2>
-              <button class="posts-area__like"></button>
+              <button type="button" class="posts-area__like"></button>
             </div>
           </li>
           <li class="posts-area__post-card">
@@ -46,7 +46,7 @@
             />
             <div class="posts-area__title-container">
               <h2 class="posts-area__title">Гора Эльбрус</h2>
-              <button class="posts-area__like"></button>
+              <button type="button" class="posts-area__like"></button>
             </div>
           </li>
           <li class="posts-area__post-card">
@@ -57,7 +57,7 @@
             />
             <div class="posts-area__title-container">
               <h2 class="posts-area__title">Домбай</h2>
-              <button class="posts-area__like"></button>
+              <button type="button" class="posts-area__like"></button>
             </div>
           </li>
           <li class="posts-area__post-card">
@@ -68,7 +68,7 @@
             />
             <div class="posts-area__title-container">
               <h2 class="posts-area__title">Боржоми</h2>
-              <button class="posts-area__like"></button>
+              <button type="button" class="posts-area__like"></button>
             </div>
           </li>
           <li class="posts-area__post-card">
@@ -79,7 +79,7 @@
             />
             <div class="posts-area__title-container">
               <h2 class="posts-area__title">Черное море</h2>
-              <button class="posts-area__like"></button>
+              <button type="button" class="posts-area__like"></button>
             </div>
           </li>
           <li class="posts-area__post-card">
@@ -90,7 +90,7 @@
             />
             <div class="posts-area__title-container">
               <h2 class="posts-area__title">Карачаево-Черкесская</h2>
-              <button class="posts-area__like"></button>
+              <button type="button" class="posts-area__like"></button>
             </div>
           </li>
         </ul>
@@ -102,14 +102,20 @@
     <!-- popup_opened -->
     <section class="popup" aria-label="всплывающее окно формы регистрации">
       <div class="popup__container">
-        <button class="popup__close-icon"></button>
+        <button type="button" class="popup__close-icon"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup_form" name="userAddInfo">
-          <input class="popup__input" type="text" placeholder="Жак-Ив Кусто" />
+        <form class="popup_form" name="user-add-info">
+          <input
+            class="popup__input"
+            type="text"
+            placeholder="Жак-Ив Кусто"
+            name="profile-name"
+          />
           <input
             class="popup__input"
             type="text"
             placeholder="Исследователь океана"
+            name="profile-subtitle"
           />
           <button type="submit" class="popup__button-save"></button>
         </form>
