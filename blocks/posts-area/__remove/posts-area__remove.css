@@ -1,0 +1,18 @@
+.posts-area__remove {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 18px;
+  height: 19.3px;
+  background-color: transparent;
+  background-image: url(../../../images/Trash.svg);
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.posts-area__remove:hover {
+  transition: opacity ease-in-out 0.3s;
+  opacity: 0.5;
+  cursor: pointer;
+}

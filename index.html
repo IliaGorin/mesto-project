@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Социальная сеть Место</title>
     <link rel="stylesheet" href="./pages/index.css" />
+    <script src="./pages/index.js" defer></script>
   </head>
   <body class="page">
     <header class="header">
@@ -25,101 +26,87 @@
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
+
       <section class="posts-area" aria-label="секция с карточками">
-        <ul class="posts-area__posts-list">
-          <li class="posts-area__post-card">
-            <img
-              src="./images/Tyumen.jpg"
-              alt="Тюмень"
-              class="posts-area__image"
-            />
-            <div class="posts-area__title-container">
-              <h2 class="posts-area__title">Тюмень</h2>
-              <button type="button" class="posts-area__like"></button>
-            </div>
-          </li>
-          <li class="posts-area__post-card">
-            <img
-              src="./images/Elbrus.jpg"
-              alt="Гора Эльбрус"
-              class="posts-area__image"
-            />
-            <div class="posts-area__title-container">
-              <h2 class="posts-area__title">Гора Эльбрус</h2>
-              <button type="button" class="posts-area__like"></button>
-            </div>
-          </li>
-          <li class="posts-area__post-card">
-            <img
-              src="./images/Dombai.jpg"
-              alt="Домбай"
-              class="posts-area__image"
-            />
-            <div class="posts-area__title-container">
-              <h2 class="posts-area__title">Домбай</h2>
-              <button type="button" class="posts-area__like"></button>
-            </div>
-          </li>
-          <li class="posts-area__post-card">
-            <img
-              src="./images/Borjomi.jpg"
-              alt="Боржоми"
-              class="posts-area__image"
-            />
-            <div class="posts-area__title-container">
-              <h2 class="posts-area__title">Боржоми</h2>
-              <button type="button" class="posts-area__like"></button>
-            </div>
-          </li>
-          <li class="posts-area__post-card">
-            <img
-              src="./images/Black-sea.jpg"
-              alt="Черное море"
-              class="posts-area__image"
-            />
-            <div class="posts-area__title-container">
-              <h2 class="posts-area__title">Черное море</h2>
-              <button type="button" class="posts-area__like"></button>
-            </div>
-          </li>
-          <li class="posts-area__post-card">
-            <img
-              src="./images/Karachaevsk.jpg"
-              alt="Карачаевск"
-              class="posts-area__image"
-            />
-            <div class="posts-area__title-container">
-              <h2 class="posts-area__title">Карачаево-Черкесская</h2>
-              <button type="button" class="posts-area__like"></button>
-            </div>
-          </li>
-        </ul>
+        <ul class="posts-area__posts-list"></ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__title">© 2020 Mesto Russia</p>
     </footer>
     <!-- popup_opened -->
-    <section class="popup" aria-label="всплывающее окно формы регистрации">
+    <section
+      id="popupEditProfile"
+      class="popup"
+      aria-label="всплывающее окно формы регистрации"
+    >
       <div class="popup__container">
         <button type="button" class="popup__close-icon"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup_form" name="user-add-info">
+        <form class="popup_form" name="user-add-info" id="user-add-info">
           <input
             class="popup__input"
             type="text"
-            placeholder="Жак-Ив Кусто"
             name="profile-name"
+            id="profile-name"
           />
           <input
             class="popup__input"
             type="text"
-            placeholder="Исследователь океана"
             name="profile-subtitle"
+            id="profile-subtitle"
           />
           <button type="submit" class="popup__button-save"></button>
         </form>
       </div>
     </section>
+    <section
+      id="popupNewMesto"
+      class="popup"
+      aria-label="всплывающее окно формы добавления новой карточки"
+    >
+      <div class="popup__container">
+        <button type="button" class="popup__close-icon"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup_form" name="add-new-mesto" id="add-new-mesto">
+          <input
+            class="popup__input"
+            type="text"
+            name="card-title"
+            placeholder="Название"
+            id="card-title"
+          />
+          <input
+            class="popup__input"
+            type="text"
+            name="card-link"
+            placeholder="Ссылка на картинку"
+            id="card-link"
+          />
+          <button type="submit" class="popup__button-save"></button>
+        </form>
+      </div>
+    </section>
+    <section
+      id="img-popup"
+      class="popup"
+      aria-label="всплывающая картинка карточки"
+    >
+      <div class="popup__image-container">
+        <button type="button" class="popup__close-icon"></button>
+        <img src="" alt="" class="popup__image" id="imageInPopup" />
+        <h2 class="popup__image-header"></h2>
+      </div>
+    </section>
+    <template id="template-posts-area">
+      <li class="posts-area__post-card">
+        <img src="" alt="" class="posts-area__image" />
+        <button type="button" class="posts-area__remove"></button>
+        <div class="posts-area__title-container">
+          <h2 class="posts-area__title"></h2>
+          <button type="button" class="posts-area__like"></button>
+        </div>
+      </li>
+    </template>
   </body>
 </html>
