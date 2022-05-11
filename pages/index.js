@@ -13,7 +13,6 @@ const popups = document.querySelectorAll('.popup');
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup__close-icon')) {
-      document.removeEventListener('keydown', closeByEscape);
       closePopup(popup);
     }
   });
@@ -51,7 +50,7 @@ buttonEditProfile.addEventListener('click', () => {
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  popupEditProfile.classList.remove('popup_opened');
+  closePopup(popupEditProfile);
   userNameStore = userNameSubmit.value;
   userSubtitleStore = userSubtitleSubmit.value;
   userName.textContent = userNameStore;
@@ -125,7 +124,7 @@ function createNewCard(newCardSrc, newCardName) {
 }
 
 initialCards.forEach((item) => {
-  let newCard = createNewCard(item.link, item.name);
+  const newCard = createNewCard(item.link, item.name);
   postsArea.append(newCard);
 });
 
@@ -145,7 +144,7 @@ const formAddNewCard = document.querySelector('#add-new-mesto');
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   closePopup(popupAddCard);
-  let newCard = createNewCard(newCardLink.value, newCardTitle.value);
+  const newCard = createNewCard(newCardLink.value, newCardTitle.value);
   postsArea.prepend(newCard);
   formAddNewCard.reset();
 }
