@@ -1,4 +1,7 @@
 'use strict';
+
+import './index.css';
+
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('#popupEditProfile');
 const formElement = document.querySelector('#user-add-info');
@@ -86,7 +89,9 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
   },
 ];
-const templatePostsArea = document.querySelector('#template-posts-area').content;
+const templatePostsArea = document.querySelector(
+  '#template-posts-area'
+).content;
 
 const postsArea = document.querySelector('.posts-area__posts-list');
 

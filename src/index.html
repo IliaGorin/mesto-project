@@ -5,17 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Социальная сеть Место</title>
-    <link rel="stylesheet" href="./pages/index.css" />
-    <script src="./pages/index.js" defer></script>
   </head>
   <body class="page">
     <header class="header">
-      <img src="./images/Mesto_logo.svg" alt="Логотип" class="header__logo" />
+      <img
+        src="<%=require('../src/images/Mesto_logo.svg')%>"
+        alt="Логотип"
+        class="header__logo"
+      />
     </header>
     <main>
       <section class="profile">
         <img
-          src="./images/Kusto_portrait.jpg"
+          src="<%=require('../src/images/Kusto_portrait.jpg')%>"
           alt="Аватар"
           class="profile__avatar"
         />
@@ -95,7 +97,7 @@
       <div class="popup__image-container">
         <button type="button" class="popup__close-icon"></button>
         <img
-          src="./images/Black-sea.jpg"
+          src="<%=require('../src/images/Black-sea.jpg')%>"
           alt=""
           class="popup__image"
           id="imageInPopup"
