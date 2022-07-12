@@ -45,7 +45,12 @@
       <div class="popup__container">
         <button type="button" class="popup__close-icon"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup_form" name="user-add-info" id="user-add-info">
+        <form
+          class="popup_form"
+          name="user-add-info"
+          id="user-add-info"
+          novalidate
+        >
           <input
             class="popup__input"
             type="text"
@@ -58,7 +63,13 @@
             name="profile-subtitle"
             id="profile-subtitle"
           />
-          <button type="submit" class="popup__button-save"></button>
+          <button
+            type="submit"
+            class="popup__button-save"
+            id="save-profile-button"
+          >
+            Сохранить
+          </button>
         </form>
       </div>
     </section>
@@ -70,7 +81,12 @@
       <div class="popup__container">
         <button type="button" class="popup__close-icon"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup_form" name="add-new-mesto" id="add-new-mesto">
+        <form
+          class="popup_form"
+          name="add-new-mesto"
+          id="add-new-mesto"
+          novalidate
+        >
           <input
             class="popup__input"
             type="text"
@@ -85,7 +101,13 @@
             placeholder="Ссылка на картинку"
             id="card-link"
           />
-          <button type="submit" class="popup__button-save"></button>
+          <button
+            type="submit"
+            class="popup__button-save"
+            id="create-card-button"
+          >
+            Создать
+          </button>
         </form>
       </div>
     </section>
@@ -97,7 +119,7 @@
       <div class="popup__image-container">
         <button type="button" class="popup__close-icon"></button>
         <img
-          src="<%=require('../src/images/Black-sea.jpg')%>"
+          src="<%=require('../src/images/BlackSea.jpg')%>"
           alt=""
           class="popup__image"
           id="imageInPopup"

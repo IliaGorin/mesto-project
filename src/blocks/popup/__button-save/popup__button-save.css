@@ -1,11 +1,18 @@
 .popup__button-save {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
   border: 0;
   padding: 0;
   margin: 48px 0 0 36px;
   width: 358px;
   height: 50px;
-  background-color: transparent;
-  background-image: url(../../../images/Save-Button-big.svg);
+  background-color: #000;
+  border: 1px solid #000;
+  border-radius: 2px;
   transition: opacity ease-in-out 0.3s;
 }
 
@@ -21,6 +28,5 @@
     margin-left: 22px;
     width: 238px;
     height: 46px;
-    background-image: url(../../../images/Save-Button-small.svg);
   }
 }
