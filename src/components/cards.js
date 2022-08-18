@@ -5,10 +5,6 @@ import BlackSea from '../images/BlackSea.jpg';
 import Dombai from '../images/Dombai.jpg';
 import Elbrus from '../images/Elbrus.jpg';
 import Karachaevsk from '../images/Karachaevsk.jpg';
-import { openPopup } from './modal.js';
-
-const imageInPopup = document.querySelector('#imageInPopup');
-const headerInPopupImg = document.querySelector('.popup__image-header');
 
 const initialCards = [
   {
@@ -48,35 +44,28 @@ function createNewCard(newCardSrc, newCardName) {
   const postWithImg = templatePostsArea.cloneNode(true);
   const imgSrc = postWithImg.querySelector('.posts-area__image');
   const cardTitle = postWithImg.querySelector('.posts-area__title');
-  const buttonLike = postWithImg.querySelector('.posts-area__like');
-  const buttonRemove = postWithImg.querySelector('.posts-area__remove');
-  const imagePopup = document.querySelector('#img-popup');
 
   imgSrc.src = newCardSrc;
   imgSrc.alt = newCardName;
   cardTitle.textContent = newCardName;
 
-  buttonLike.addEventListener('click', () => {
-    buttonLike.classList.toggle('posts-area__like_active');
-  });
-
-  buttonRemove.addEventListener('click', () => {
-    buttonRemove.parentElement.remove();
-  });
-
-  imgSrc.addEventListener('click', () => {
-    openPopup(imagePopup);
-    imageInPopup.src = imgSrc.src;
-    imageInPopup.alt = imgSrc.alt;
-    headerInPopupImg.textContent = cardTitle.textContent;
-  });
-
   return postWithImg;
 }
 
+function addLike(evt) {
+  if (evt.target.classList.contains('posts-area__like')) {
+    evt.target.classList.toggle('posts-area__like_active');
+  }
+}
+
+function delCard(evt) {
+  if (evt.target.classList.contains('posts-area__remove')) {
+    evt.target.parentElement.remove();
+  }
+}
+
 initialCards.forEach((item) => {
-  const newCard = createNewCard(item.link, item.name);
-  postsArea.append(newCard);
+  postsArea.append(createNewCard(item.link, item.name));
 });
 
-export { createNewCard };
+export { createNewCard, postsArea, addLike, delCard };

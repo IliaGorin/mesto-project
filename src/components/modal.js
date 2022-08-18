@@ -1,4 +1,4 @@
-import { createNewCard } from './cards.js';
+import { createNewCard, postsArea } from './cards.js';
 
 const popupEditProfile = document.querySelector('#popupEditProfile');
 const formElement = document.querySelector('#user-add-info');
@@ -32,12 +32,13 @@ function closePopup(popupType) {
   document.removeEventListener('keydown', closeByEscape);
 }
 
-function closeByEscape(e) {
-  if (e.key === 'Escape') {
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
 }
+
 // close by close-icon
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
@@ -82,4 +83,20 @@ function handleProfileFormSubmit(evt) {
 
 formElement.addEventListener('submit', handleProfileFormSubmit);
 
-export { handleProfileFormSubmit, handleAddCardFormSubmit, openPopup };
+//function for generate modal screen with image(maybe move to cards.js??)
+const imageInPopup = document.querySelector('#imageInPopup');
+const imagePopup = document.querySelector('#img-popup');
+const headerInPopupImg = document.querySelector('.popup__image-header');
+
+function generatePopupImage(evt) {
+  if (evt.target.classList.contains('posts-area__image')) {
+    openPopup(imagePopup);
+    imageInPopup.src = evt.target.src;
+    imageInPopup.alt = evt.target.alt;
+    headerInPopupImg.textContent = evt.target
+      .closest('.posts-area__post-card')
+      .querySelector('.posts-area__title').textContent;
+  }
+}
+
+export { openPopup, popupAddCard, popupEditProfile, generatePopupImage };

@@ -1,7 +1,17 @@
-'use strict';
-
 import './index.css';
-import * as card from '../components/cards';
+import {
+  openPopup,
+  popupEditProfile,
+  popupAddCard,
+  generatePopupImage,
+} from '../components/modal.js';
+import { addLike, delCard } from '../components/cards.js';
+
+document.addEventListener('click', addLike);
+
+document.addEventListener('click', delCard);
+
+document.addEventListener('click', generatePopupImage);
 
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const buttonAddCard = document.querySelector('.profile__add-button');
