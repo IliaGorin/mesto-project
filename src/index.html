@@ -34,7 +34,7 @@
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__title">© 2020 Mesto Russia</p>
+      <p class="footer__title">© 2022 Mesto</p>
     </footer>
     <!-- popup_opened -->
     <section
@@ -46,7 +46,7 @@
         <button type="button" class="popup__close-icon"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form
-          class="popup_form"
+          class="popup__form"
           name="user-add-info"
           id="user-add-info"
           novalidate
@@ -56,13 +56,25 @@
             type="text"
             name="profile-name"
             id="profile-name"
+            minlength="2"
+            maxlength="40"
+            required
+            pattern="^[a-zA-Z]+$"
+            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
           />
+          <span class="profile-name-error popup__error_visible"></span>
           <input
             class="popup__input"
             type="text"
             name="profile-subtitle"
             id="profile-subtitle"
+            minlength="2"
+            maxlength="200"
+            required
+            pattern="^[a-zA-Z]+$"
+            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
           />
+          <span class="profile-subtitle-error popup__error_visible"></span>
           <button
             type="submit"
             class="popup__button-save"
@@ -82,7 +94,7 @@
         <button type="button" class="popup__close-icon"></button>
         <h2 class="popup__title">Новое место</h2>
         <form
-          class="popup_form"
+          class="popup__form"
           name="add-new-mesto"
           id="add-new-mesto"
           novalidate
@@ -93,14 +105,22 @@
             name="card-title"
             placeholder="Название"
             id="card-title"
+            minlength="2"
+            maxlength="30"
+            required
+            pattern="^[a-zA-Z]+$"
+            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
           />
+          <span class="card-title-error popup__error_visible"></span>
           <input
             class="popup__input"
-            type="text"
+            type="url"
             name="card-link"
             placeholder="Ссылка на картинку"
             id="card-link"
+            required
           />
+          <span class="card-link-error popup__error_visible"></span>
           <button
             type="submit"
             class="popup__button-save"

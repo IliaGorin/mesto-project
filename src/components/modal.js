@@ -1,7 +1,8 @@
 import { createNewCard, postsArea } from './cards.js';
 
 const popupEditProfile = document.querySelector('#popupEditProfile');
-const formElement = document.querySelector('#user-add-info');
+const formUserInfo = document.querySelector('#user-add-info');
+const formAddNewCard = document.querySelector('#add-new-mesto');
 const userName = document.querySelector('.profile__name');
 const userSubtitle = document.querySelector('.profile__subtitle');
 const userNameSubmit = document.querySelector('#profile-name');
@@ -39,49 +40,44 @@ function closeByEscape(evt) {
   }
 }
 
-// close by close-icon
+// close by close-icon and by click on background
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup__close-icon')) {
       closePopup(popup);
     }
-  });
-});
-
-//close by click on background
-popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup')) {
       closePopup(popup);
     }
   });
 });
 
-// add new card
-const formAddNewCard = document.querySelector('#add-new-mesto');
-
 // handler for add new card
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-  closePopup(popupAddCard);
+
   const newCard = createNewCard(newCardLink.value, newCardTitle.value);
   postsArea.prepend(newCard);
   formAddNewCard.reset();
+  closePopup(popupAddCard);
 }
 
 formAddNewCard.addEventListener('submit', handleAddCardFormSubmit);
 
+// handler for edit profile
+
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  closePopup(popupEditProfile);
+
   userNameStore = userNameSubmit.value;
   userSubtitleStore = userSubtitleSubmit.value;
   userName.textContent = userNameStore;
   userSubtitle.textContent = userSubtitleStore;
+  closePopup(popupEditProfile);
 }
 
-formElement.addEventListener('submit', handleProfileFormSubmit);
+formUserInfo.addEventListener('submit', handleProfileFormSubmit);
 
 //function for generate modal screen with image(maybe move to cards.js??)
 const imageInPopup = document.querySelector('#imageInPopup');
@@ -99,4 +95,11 @@ function generatePopupImage(evt) {
   }
 }
 
-export { openPopup, popupAddCard, popupEditProfile, generatePopupImage };
+export {
+  openPopup,
+  popupAddCard,
+  popupEditProfile,
+  generatePopupImage,
+  formUserInfo,
+  formAddNewCard,
+};
