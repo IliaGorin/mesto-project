@@ -51,30 +51,36 @@
           id="user-add-info"
           novalidate
         >
-          <input
-            class="popup__input"
-            type="text"
-            name="profile-name"
-            id="profile-name"
-            minlength="2"
-            maxlength="40"
-            required
-            pattern="^[а-яА-ЯёЁa-zA-Z- ]+$"
-            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
-          />
-          <span class="profile-name-error popup__error_visible"></span>
-          <input
-            class="popup__input"
-            type="text"
-            name="profile-subtitle"
-            id="profile-subtitle"
-            minlength="2"
-            maxlength="200"
-            required
-            pattern="^[а-яА-ЯёЁa-zA-Z- ]+$"
-            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
-          />
-          <span class="profile-subtitle-error popup__error_visible"></span>
+          <div class="popup__input-container">
+            <input
+              placeholder="Имя профиля"
+              class="popup__input"
+              type="text"
+              name="profile-name"
+              id="profile-name"
+              minlength="2"
+              maxlength="40"
+              required
+              pattern="^[а-яА-ЯёЁa-zA-Z- ]+$"
+              data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
+            />
+            <span class="profile-name-error popup__error_visible"></span>
+          </div>
+          <div class="popup__input-container">
+            <input
+              placeholder="Информация о профиле"
+              class="popup__input"
+              type="text"
+              name="profile-subtitle"
+              id="profile-subtitle"
+              minlength="2"
+              maxlength="200"
+              required
+              pattern="^[а-яА-ЯёЁa-zA-Z- ]+$"
+              data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
+            />
+            <span class="profile-subtitle-error popup__error_visible"></span>
+          </div>
           <button
             type="submit"
             class="popup__button-save"
@@ -99,28 +105,32 @@
           id="add-new-mesto"
           novalidate
         >
-          <input
-            class="popup__input"
-            type="text"
-            name="card-title"
-            placeholder="Название"
-            id="card-title"
-            minlength="2"
-            maxlength="30"
-            required
-            pattern="^[а-яА-ЯёЁa-zA-Z- ]+$"
-            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
-          />
-          <span class="card-title-error popup__error_visible"></span>
-          <input
-            class="popup__input"
-            type="url"
-            name="card-link"
-            placeholder="Ссылка на картинку"
-            id="card-link"
-            required
-          />
-          <span class="card-link-error popup__error_visible"></span>
+          <div class="popup__input-container">
+            <input
+              class="popup__input"
+              type="text"
+              name="card-title"
+              placeholder="Название"
+              id="card-title"
+              minlength="2"
+              maxlength="30"
+              required
+              pattern="^[а-яА-ЯёЁa-zA-Z- ]+$"
+              data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
+            />
+            <span class="card-title-error popup__error_visible"></span>
+          </div>
+          <div class="popup__input-container">
+            <input
+              class="popup__input"
+              type="url"
+              name="card-link"
+              placeholder="Ссылка на картинку"
+              id="card-link"
+              required
+            />
+            <span class="card-link-error popup__error_visible"></span>
+          </div>
           <button
             type="submit"
             class="popup__button-save"

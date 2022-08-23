@@ -1,8 +1,8 @@
 import { createNewCard, postsArea } from './cards.js';
 
 const popupEditProfile = document.querySelector('#popupEditProfile');
-const formUserInfo = document.querySelector('#user-add-info');
-const formAddNewCard = document.querySelector('#add-new-mesto');
+const formUserInfo = document.forms['user-add-info'];
+const formAddNewCard = document.forms['add-new-mesto'];
 const userName = document.querySelector('.profile__name');
 const userSubtitle = document.querySelector('.profile__subtitle');
 const userNameSubmit = document.querySelector('#profile-name');
@@ -12,14 +12,8 @@ const popupAddCard = document.querySelector('#popupNewMesto');
 const newCardTitle = document.querySelector('#card-title');
 const newCardLink = document.querySelector('#card-link');
 
-// Edit profile name and subtitle
-let userNameStore = 'Жак-Ив Кусто';
-let userSubtitleStore = 'Исследователь океана';
-
-userName.textContent = userNameStore;
-userSubtitle.textContent = userSubtitleStore;
-userNameSubmit.value = userNameStore;
-userSubtitleSubmit.value = userSubtitleStore;
+userNameSubmit.value = 'Жак-Ив Кусто';
+userSubtitleSubmit.value = 'Исследователь океана';
 
 // functions for open and close popups
 
@@ -43,10 +37,10 @@ function closeByEscape(evt) {
 // close by close-icon and by click on background
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup__close-icon')) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains('popup')) {
+    if (
+      evt.target.classList.contains('popup__close-icon') ||
+      evt.target.classList.contains('popup')
+    ) {
       closePopup(popup);
     }
   });
@@ -60,6 +54,7 @@ function handleAddCardFormSubmit(evt) {
   const newCard = createNewCard(newCardLink.value, newCardTitle.value);
   postsArea.prepend(newCard);
   formAddNewCard.reset();
+
   closePopup(popupAddCard);
 }
 
@@ -70,10 +65,8 @@ formAddNewCard.addEventListener('submit', handleAddCardFormSubmit);
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  userNameStore = userNameSubmit.value;
-  userSubtitleStore = userSubtitleSubmit.value;
-  userName.textContent = userNameStore;
-  userSubtitle.textContent = userSubtitleStore;
+  userName.textContent = userNameSubmit.value;
+  userSubtitle.textContent = userSubtitleSubmit.value;
   closePopup(popupEditProfile);
 }
 

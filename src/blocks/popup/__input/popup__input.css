@@ -2,10 +2,10 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color: #C4C4C4;
+  color: #000;
   padding: 0;
   margin-left: 36px;
-  margin-top: 33px;
+  margin-top: 40px;
   width: 358px;
   border-top: 0;
   border-right: 0;
@@ -16,20 +16,12 @@
 @media screen and (max-width: 560px) {
   .popup__input {
     margin-left: 22px;
-    margin-top: 30px;
+    margin-top: 35px;
+    margin-bottom: 20px;
     width: 238px;
   }
 }
 
 .popup__input:focus {
   outline: 0;
-}
-
-.popup__input_changed {
-  color: #000;
-}
-
-.popup__input_type_error {
-  border-bottom: 1px solid #FF0000;
-  ;
 }

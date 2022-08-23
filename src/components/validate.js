@@ -36,8 +36,10 @@ function hasInvalidInput(inputList) {
 function toggleButtonState(inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(parameters.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', 'disabled');
   } else {
     buttonElement.classList.remove(parameters.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   }
 }
 
@@ -64,6 +66,10 @@ function enableValidation(parameters) {
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
+      toggleButtonState(
+        [...formElement.querySelectorAll(parameters.inputSelector)],
+        formElement.querySelector(parameters.submitButtonSelector)
+      );
     });
     setEventListeners(formElement);
   });
