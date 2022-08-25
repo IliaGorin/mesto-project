@@ -1,23 +1,61 @@
 import './index.css';
 import {
   openPopup,
-  popupEditProfile,
-  popupAddCard,
+  closePopup,
   generatePopupImage,
-  formUserInfo,
-  formAddNewCard,
 } from '../components/modal.js';
-import { addLike, delCard } from '../components/cards.js';
+import { createNewCard, postsArea } from '../components/cards.js';
 import { enableValidation } from '../components/validate.js';
+import {
+  popupEditProfile,
+  formAddNewCard,
+  formUserInfo,
+  buttonAddCard,
+  buttonEditProfile,
+  parameters,
+  popupAddCard,
+  newCardLink,
+  newCardTitle,
+  userName,
+  userNameSubmit,
+  userSubtitle,
+  userSubtitleSubmit,
+  initialCards,
+} from '../components/utils.js';
 
-document.addEventListener('click', addLike);
+// creating initial cards
+initialCards.forEach((item) => {
+  postsArea.append(createNewCard(item.link, item.name));
+});
 
-document.addEventListener('click', delCard);
+// handler for add new card
 
-document.addEventListener('click', generatePopupImage);
+function handleAddCardFormSubmit(evt) {
+  evt.preventDefault();
 
-const buttonEditProfile = document.querySelector('.profile__edit-button');
-const buttonAddCard = document.querySelector('.profile__add-button');
+  const newCard = createNewCard(newCardLink.value, newCardTitle.value);
+
+  postsArea.prepend(newCard);
+  formAddNewCard.reset();
+
+  closePopup(popupAddCard);
+}
+
+formAddNewCard.addEventListener('submit', handleAddCardFormSubmit);
+
+// handler for edit profile
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+
+  userName.textContent = userNameSubmit.value;
+  userSubtitle.textContent = userSubtitleSubmit.value;
+  closePopup(popupEditProfile);
+}
+
+formUserInfo.addEventListener('submit', handleProfileFormSubmit);
+
+//function for generate modal screen with image(maybe move to cards.js??)
 
 buttonAddCard.addEventListener('click', () => {
   openPopup(popupAddCard);
@@ -27,15 +65,4 @@ buttonEditProfile.addEventListener('click', () => {
   openPopup(popupEditProfile);
 });
 
-const parameters = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button-save',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-};
-
 enableValidation(parameters);
-
-export { parameters };

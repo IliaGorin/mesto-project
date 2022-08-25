@@ -1,18 +1,18 @@
-import { parameters } from '../pages/index.js';
+import { parameters } from './utils.js';
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+function showInputError(formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(parameters.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(parameters.errorClass);
-};
+}
 
-const hideInputError = (formElement, inputElement) => {
+function hideInputError(formElement, inputElement) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(parameters.inputErrorClass);
   errorElement.classList.remove(parameters.errorClass);
   errorElement.textContent = '';
-};
+}
 
 function checkInputValidity(formElement, inputElement) {
   if (inputElement.validity.patternMismatch) {
@@ -43,7 +43,7 @@ function toggleButtonState(inputList, buttonElement) {
   }
 }
 
-function setEventListeners(formElement) {
+function setEventListenersForInputValidation(formElement) {
   const inputList = Array.from(
     formElement.querySelectorAll(parameters.inputSelector)
   );
@@ -71,7 +71,7 @@ function enableValidation(parameters) {
         formElement.querySelector(parameters.submitButtonSelector)
       );
     });
-    setEventListeners(formElement);
+    setEventListenersForInputValidation(formElement);
   });
 }
 

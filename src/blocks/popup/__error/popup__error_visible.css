@@ -10,15 +10,13 @@
   width: 358px;
   color: #FF0000;
   position: absolute;
-  bottom: -35px;
+  top: 58px;
   left: 0;
 }
 
 @media screen and (max-width: 560px) {
   .popup__error_visible {
-    font-size: 10px;
     margin-left: 22px;
     width: 238px;
-    bottom: -10px;
   }
 }
