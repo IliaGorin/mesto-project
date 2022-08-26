@@ -7,9 +7,6 @@ import {
   headerInPopupImg,
 } from './utils.js';
 
-// userNameSubmit.value = 'Жак-Ив Кусто';
-// userSubtitleSubmit.value = 'Исследователь океана';
-
 // functions for open and close popups
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
