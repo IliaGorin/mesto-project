@@ -4,7 +4,7 @@ import {
   closePopup,
   generatePopupImage,
 } from '../components/modal.js';
-import { createNewCard, postsArea } from '../components/cards.js';
+import { createNewCard } from '../components/cards.js';
 import { enableValidation } from '../components/validate.js';
 import {
   popupEditProfile,
@@ -14,6 +14,7 @@ import {
   buttonEditProfile,
   parameters,
   popupAddCard,
+  postsArea,
   newCardLink,
   newCardTitle,
   userName,

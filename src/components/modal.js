@@ -3,11 +3,12 @@ import {
   userSubtitleSubmit,
   popups,
   imagePopup,
+  imageInPopup,
   headerInPopupImg,
 } from './utils.js';
 
-userNameSubmit.value = 'Жак-Ив Кусто';
-userSubtitleSubmit.value = 'Исследователь океана';
+// userNameSubmit.value = 'Жак-Ив Кусто';
+// userSubtitleSubmit.value = 'Исследователь океана';
 
 // functions for open and close popups
 function closeByEscape(evt) {

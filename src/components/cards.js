@@ -1,4 +1,4 @@
-import { templatePostsArea, postsArea } from './utils.js';
+import { templatePostsArea } from './utils.js';
 import { generatePopupImage } from './modal.js';
 
 // function for create new card
@@ -36,4 +36,4 @@ function delCard(evt) {
   evt.target.parentElement.remove();
 }
 
-export { createNewCard, postsArea };
+export { createNewCard };
