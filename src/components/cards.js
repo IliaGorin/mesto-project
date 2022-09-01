@@ -1,5 +1,6 @@
 import { templatePostsArea } from './utils.js';
 import { generatePopupImage } from './modal.js';
+import { delCardfromServer } from './api.js';
 
 // function for create new card
 function createNewCard(newCardSrc, newCardName) {
@@ -33,6 +34,11 @@ function addLike(evt) {
 }
 
 function delCard(evt) {
+  console.log(evt.target.previousElementSibling);
+  const cardId = '630e58faeead3d0e4ea5985f';
+  // delCardfromServer(cardId).then((data) => {
+  //   console.log(data);
+  // });
   evt.target.parentElement.remove();
 }
 

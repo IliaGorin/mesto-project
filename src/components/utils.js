@@ -5,32 +5,33 @@ import BlackSea from '../images/BlackSea.jpg';
 import Dombai from '../images/Dombai.jpg';
 import Elbrus from '../images/Elbrus.jpg';
 import Karachaevsk from '../images/Karachaevsk.jpg';
-const initialCards = [
-  {
-    name: 'Тюмень',
-    link: Tyumen,
-  },
-  {
-    name: 'Боржоми',
-    link: Borjomi,
-  },
-  {
-    name: 'Черное море',
-    link: BlackSea,
-  },
-  {
-    name: 'Домбай',
-    link: Dombai,
-  },
-  {
-    name: 'Эльбрус',
-    link: Elbrus,
-  },
-  {
-    name: 'Карачаевск',
-    link: Karachaevsk,
-  },
-];
+
+const initialCards = [];
+// {
+//   name: 'Тюмень',
+//   link: Tyumen,
+// },
+// {
+//   name: 'Боржоми',
+//   link: Borjomi,
+// },
+// {
+//   name: 'Черное море',
+//   link: BlackSea,
+// },
+// {
+//   name: 'Домбай',
+//   link: Dombai,
+// },
+// {
+//   name: 'Эльбрус',
+//   link: Elbrus,
+// },
+// {
+//   name: 'Карачаевск',
+//   link: Karachaevsk,
+// },
+
 const popupEditProfile = document.querySelector('#popupEditProfile');
 const formUserInfo = document.forms['user-add-info'];
 const formAddNewCard = document.forms['add-new-mesto'];
@@ -48,6 +49,7 @@ const buttonAddCard = document.querySelector('.profile__add-button');
 const imageInPopup = document.querySelector('#imageInPopup');
 const imagePopup = document.querySelector('#img-popup');
 const headerInPopupImg = document.querySelector('.popup__image-header');
+const profileAvatar = document.querySelector('.profile__avatar');
 
 const templatePostsArea = document.querySelector(
   '#template-posts-area'
@@ -82,4 +84,5 @@ export {
   headerInPopupImg,
   parameters,
   templatePostsArea,
+  profileAvatar,
 };
