@@ -1,15 +1,33 @@
-import { templatePostsArea } from './utils.js';
+import { templatePostsArea, MY_ID } from './utils.js';
 import { generatePopupImage } from './modal.js';
-import { delCardfromServer } from './api.js';
+import { delCardfromServer, addLikeToAPI, removeLikeFromAPI } from './api.js';
 
 // function for create new card
-function createNewCard(newCardSrc, newCardName) {
+function createNewCard(cardData) {
   const postWithImg = templatePostsArea.cloneNode(true);
   const imgSrc = postWithImg.querySelector('.posts-area__image');
   const cardTitle = postWithImg.querySelector('.posts-area__title');
-  imgSrc.src = newCardSrc;
-  imgSrc.alt = newCardName;
-  cardTitle.textContent = newCardName;
+  const cardButtonRemove = postWithImg.querySelector('.posts-area__remove');
+  const cardLike = postWithImg.querySelector('.posts-area__like');
+  const cardLikesCounter = postWithImg.querySelector(
+    '.posts-area__like-counter'
+  );
+  imgSrc.src = cardData.link;
+  imgSrc.alt = cardData.name;
+  cardTitle.textContent = cardData.name;
+  imgSrc.dataset.cardId = cardData._Id;
+  imgSrc.dataset.likesCount = cardData.likes.length;
+  cardLikesCounter.textContent = cardData.likes.length;
+
+  for (let cardDataLikeInfo of cardData.likes) {
+    if (cardDataLikeInfo._id === MY_ID) {
+      cardLike.classList.add('posts-area__like_active');
+    }
+  }
+
+  if (cardData.owner._id !== MY_ID) {
+    cardButtonRemove.setAttribute('style', 'display:none');
+  }
   addListenersToCard(postWithImg);
   return postWithImg;
 }
@@ -30,15 +48,30 @@ function setEventListenersForCard(card, cardLike, cardButtonRemove) {
 }
 
 function addLike(evt) {
+  const card =
+    evt.target.parentElement.parentElement.parentElement.firstElementChild;
+  const cardId = card.dataset.cardId;
+
   evt.target.classList.toggle('posts-area__like_active');
+  if (evt.target.classList.contains('posts-area__like_active')) {
+    addLikeToAPI(cardId).then((data) => {
+      card.dataset.likesCount = data.likes.length;
+      evt.target.nextElementSibling.textContent = data.likes.length;
+    });
+  } else {
+    removeLikeFromAPI(cardId).then((data) => {
+      card.dataset.likesCount = data.likes.length;
+      evt.target.nextElementSibling.textContent = data.likes.length;
+    });
+  }
 }
 
 function delCard(evt) {
   console.log(evt.target.previousElementSibling);
-  const cardId = '630e58faeead3d0e4ea5985f';
-  // delCardfromServer(cardId).then((data) => {
-  //   console.log(data);
-  // });
+  const cardId = evt.target.previousElementSibling.dataset.cardId;
+  delCardfromServer(cardId).then((data) => {
+    console.log(data);
+  });
   evt.target.parentElement.remove();
 }
 

@@ -6,7 +6,7 @@
 //   },
 // };
 
-import { newCardLink } from './utils';
+import { cardData, newCardLink, config } from './utils';
 
 // export const getInitialCards = () => {
 //   return fetch('https://nomoreparties.co/v1/plus-cohort-14/cards', {
@@ -27,27 +27,19 @@ const checkResponse = (res) => {
   return Promise.reject(new Error(`Error ${res.status}`));
 };
 
-const config = {
-  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-14',
-  headers: {
-    authorization: '26532032-c932-44be-aa06-105c74f5a87c',
-    'Content-Type': 'application/json',
-  },
-};
-
-export const postUserInfo = (profileName, profileAbout) => {
-  return fetch('https://nomoreparties.co/v1/plus-cohort-14/users/me', {
+export const postUserInfo = (userInfo) => {
+  return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
-      name: profileName,
-      about: profileAbout,
+      name: userInfo.name,
+      about: userInfo.about,
     }),
   }).then((res) => checkResponse(res));
 };
 
 export const postUserAvatar = () => {
-  return fetch('https://nomoreparties.co/v1/plus-cohort-14/users/me/avatar', {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
@@ -56,16 +48,16 @@ export const postUserAvatar = () => {
   }).then((res) => checkResponse(res));
 };
 
-export const postNewCard = (cardName, cardLink) => {
-  return fetch('https://nomoreparties.co/v1/plus-cohort-14/cards', {
+export const postNewCard = (cardData) => {
+  return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     headers: config.headers,
-    body: JSON.stringify({ link: cardLink, name: cardName }),
+    body: JSON.stringify({ link: cardData.link, name: cardData.name }),
   }).then((res) => checkResponse(res));
 };
 
 export const getUserInfo = () => {
-  return fetch('https://nomoreparties.co/v1/plus-cohort-14/users/me', {
+  return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers,
   }).then((res) => checkResponse(res));
 };
@@ -76,10 +68,22 @@ export const getInitialCards = () => {
   }).then((res) => checkResponse(res));
 };
 
-// DELETE https://nomoreparties.co/v1/cohortId/cards/cardId
-
 export const delCardfromServer = (cardId) => {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: config.headers,
+  }).then((res) => checkResponse(res));
+};
+
+export const addLikeToAPI = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: 'PUT',
+    headers: config.headers,
+  }).then((res) => checkResponse(res));
+};
+
+export const removeLikeFromAPI = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: 'DELETE',
     headers: config.headers,
   }).then((res) => checkResponse(res));

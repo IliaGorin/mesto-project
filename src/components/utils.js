@@ -1,36 +1,4 @@
-// Add to page initial array of cards
-import Tyumen from '../images/Tyumen.jpg';
-import Borjomi from '../images/Borjomi.jpg';
-import BlackSea from '../images/BlackSea.jpg';
-import Dombai from '../images/Dombai.jpg';
-import Elbrus from '../images/Elbrus.jpg';
-import Karachaevsk from '../images/Karachaevsk.jpg';
-
-const initialCards = [];
-// {
-//   name: 'Тюмень',
-//   link: Tyumen,
-// },
-// {
-//   name: 'Боржоми',
-//   link: Borjomi,
-// },
-// {
-//   name: 'Черное море',
-//   link: BlackSea,
-// },
-// {
-//   name: 'Домбай',
-//   link: Dombai,
-// },
-// {
-//   name: 'Эльбрус',
-//   link: Elbrus,
-// },
-// {
-//   name: 'Карачаевск',
-//   link: Karachaevsk,
-// },
+const MY_ID = '07e030ff3f0c4352079f4dab';
 
 const popupEditProfile = document.querySelector('#popupEditProfile');
 const formUserInfo = document.forms['user-add-info'];
@@ -50,10 +18,10 @@ const imageInPopup = document.querySelector('#imageInPopup');
 const imagePopup = document.querySelector('#img-popup');
 const headerInPopupImg = document.querySelector('.popup__image-header');
 const profileAvatar = document.querySelector('.profile__avatar');
-
 const templatePostsArea = document.querySelector(
   '#template-posts-area'
 ).content;
+
 const parameters = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -63,8 +31,39 @@ const parameters = {
   errorClass: 'popup__error_visible',
 };
 
+const config = {
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-14',
+  headers: {
+    authorization: '26532032-c932-44be-aa06-105c74f5a87c',
+    'Content-Type': 'application/json',
+  },
+};
+
+const cardData = {
+  name: '',
+  link: '',
+  _Id: '',
+  likes: '',
+  owner: '',
+  createdAt: '',
+  owner: {
+    name: '',
+    about: '',
+    _id: '',
+    avatar: '',
+  },
+};
+
+const userInfo = {
+  name: '',
+  about: '',
+  _id: '',
+  avatar: '',
+};
+
 export {
-  initialCards,
+  config,
+  MY_ID,
   popupEditProfile,
   formUserInfo,
   formAddNewCard,
@@ -85,4 +84,6 @@ export {
   parameters,
   templatePostsArea,
   profileAvatar,
+  cardData,
+  userInfo,
 };

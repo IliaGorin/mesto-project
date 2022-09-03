@@ -1,9 +1,5 @@
 import './index.css';
-import {
-  openPopup,
-  closePopup,
-  generatePopupImage,
-} from '../components/modal.js';
+import { openPopup, closePopup } from '../components/modal.js';
 import { createNewCard } from '../components/cards.js';
 import { enableValidation } from '../components/validate.js';
 import {
@@ -21,8 +17,9 @@ import {
   userNameSubmit,
   userSubtitle,
   userSubtitleSubmit,
-  initialCards,
   profileAvatar,
+  cardData,
+  userInfo,
 } from '../components/utils.js';
 import {
   getInitialCards,
@@ -34,34 +31,44 @@ import {
 
 // creating initial cards (from server)
 
-getInitialCards()
-  .then((data) => {
-    console.log(data);
-    data.forEach((cardInfoFromAPI) => {
-      initialCards.push({
-        name: cardInfoFromAPI.name,
-        link: cardInfoFromAPI.link,
-      });
+Promise.all([getInitialCards(), getUserInfo()])
+  .then(([initialCards, userInfo]) => {
+    initialCards.forEach((item) => {
+      cardData.name = item.name;
+      cardData.link = item.link;
+      cardData.owner._id = item.owner._id;
+      cardData._Id = item._id;
+      cardData.likes = item.likes;
+      postsArea.append(createNewCard(cardData));
+
+      userNameSubmit.setAttribute('value', userInfo.name);
+      userSubtitleSubmit.setAttribute('value', userInfo.about);
+
+      userName.textContent = userInfo.name;
+      userSubtitle.textContent = userInfo.about;
+      profileAvatar.src = userInfo.avatar;
     });
   })
-  .then(() => {
-    initialCards.forEach((item) => {
-      postsArea.append(createNewCard(item.link, item.name));
-    });
+  .catch((err) => {
+    console.log(err);
   });
-
-console.log(initialCards);
 
 // handler for add new card
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-  console.log(newCardTitle.value, newCardLink.value);
-  const cardTitleAPI = newCardTitle.value;
-  const cardLinkAPI = newCardLink.value;
-  postNewCard(cardTitleAPI, cardLinkAPI).then((data) => {});
-  const newCard = createNewCard(newCardLink.value, newCardTitle.value);
-  postsArea.prepend(newCard);
+  cardData.name = newCardTitle.value;
+  cardData.link = newCardLink.value;
+  postNewCard(cardData).then((data) => {
+    cardData.name = data.name;
+    cardData.link = data.link;
+    cardData.owner._id = data.owner._id;
+    cardData._Id = data._id;
+    cardData.likes = data.likes;
+    const newCard = createNewCard(cardData);
+    postsArea.prepend(newCard);
+  });
+
   formAddNewCard.reset();
 
   closePopup(popupAddCard);
@@ -75,29 +82,24 @@ formAddNewCard.addEventListener('submit', handleAddCardFormSubmit);
 //   console.log(data);
 // });
 
-getUserInfo().then((data) => {
-  userName.textContent = data.name;
-  userSubtitle.textContent = data.about;
-  profileAvatar.src = data.avatar;
-});
-
 // handler for edit profile
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  postUserInfo(userNameSubmit.value, userSubtitleSubmit.value).then((data) => {
+  userInfo.name = userNameSubmit.value;
+  userInfo.about = userSubtitleSubmit.value;
+  postUserInfo(userInfo).then((data) => {
     console.log(data);
     userName.textContent = data.name;
     userSubtitle.textContent = data.about;
   });
-  // userName.textContent = userNameSubmit.value;
-  // userSubtitle.textContent = userSubtitleSubmit.value;
+
   closePopup(popupEditProfile);
 }
 
 formUserInfo.addEventListener('submit', handleProfileFormSubmit);
 
-//function for generate modal screen with image(maybe move to cards.js??)
+//function for generate modal screen with image
 
 buttonAddCard.addEventListener('click', () => {
   openPopup(popupAddCard);

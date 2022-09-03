@@ -1,11 +1,4 @@
-import {
-  userNameSubmit,
-  userSubtitleSubmit,
-  popups,
-  imagePopup,
-  imageInPopup,
-  headerInPopupImg,
-} from './utils.js';
+import { popups, imagePopup, imageInPopup, headerInPopupImg } from './utils.js';
 
 // functions for open and close popups
 function closeByEscape(evt) {
