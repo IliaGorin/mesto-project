@@ -6,6 +6,7 @@ import {
   popupEditProfile,
   formAddNewCard,
   formUserInfo,
+  formEditAvatar,
   buttonAddCard,
   buttonEditProfile,
   parameters,
@@ -20,6 +21,12 @@ import {
   profileAvatar,
   cardData,
   userInfo,
+  avatarLink,
+  popupAvatar,
+  buttonEditAvatar,
+  buttonSaveProfile,
+  buttonCreateCard,
+  buttonUpdateAvatar,
 } from '../components/utils.js';
 import {
   getInitialCards,
@@ -59,15 +66,23 @@ function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   cardData.name = newCardTitle.value;
   cardData.link = newCardLink.value;
-  postNewCard(cardData).then((data) => {
-    cardData.name = data.name;
-    cardData.link = data.link;
-    cardData.owner._id = data.owner._id;
-    cardData._Id = data._id;
-    cardData.likes = data.likes;
-    const newCard = createNewCard(cardData);
-    postsArea.prepend(newCard);
-  });
+  buttonCreateCard.textContent = 'Сохранение...';
+  postNewCard(cardData)
+    .then((data) => {
+      cardData.name = data.name;
+      cardData.link = data.link;
+      cardData.owner._id = data.owner._id;
+      cardData._Id = data._id;
+      cardData.likes = data.likes;
+      const newCard = createNewCard(cardData);
+      postsArea.prepend(newCard);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      buttonCreateCard.textContent = 'Создать';
+    });
 
   formAddNewCard.reset();
 
@@ -76,30 +91,57 @@ function handleAddCardFormSubmit(evt) {
 
 formAddNewCard.addEventListener('submit', handleAddCardFormSubmit);
 
-// request info about profile
-
-// postUserAvatar().then((data) => {
-//   console.log(data);
-// });
-
 // handler for edit profile
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
+
   userInfo.name = userNameSubmit.value;
   userInfo.about = userSubtitleSubmit.value;
-  postUserInfo(userInfo).then((data) => {
-    console.log(data);
-    userName.textContent = data.name;
-    userSubtitle.textContent = data.about;
-  });
+  buttonSaveProfile.textContent = 'Сохранение...';
+  postUserInfo(userInfo)
+    .then((data) => {
+      userName.textContent = data.name;
+      userSubtitle.textContent = data.about;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      buttonSaveProfile.textContent = 'Сохранить';
+    });
 
   closePopup(popupEditProfile);
 }
 
 formUserInfo.addEventListener('submit', handleProfileFormSubmit);
 
-//function for generate modal screen with image
+// handler for update avatar
+
+function handleEditAvatarForm(evt) {
+  evt.preventDefault();
+
+  buttonUpdateAvatar.textContent = 'Сохранение...';
+  postUserAvatar(avatarLink.value)
+    .then((data) => {
+      profileAvatar.src = data.avatar;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      buttonUpdateAvatar.textContent = 'Сохранить';
+    });
+  avatarLink.value = '';
+
+  closePopup(popupAvatar);
+}
+
+formEditAvatar.addEventListener('submit', handleEditAvatarForm);
+
+buttonEditAvatar.addEventListener('click', () => {
+  openPopup(popupAvatar);
+});
 
 buttonAddCard.addEventListener('click', () => {
   openPopup(popupAddCard);

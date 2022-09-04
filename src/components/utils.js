@@ -3,6 +3,9 @@ const MY_ID = '07e030ff3f0c4352079f4dab';
 const popupEditProfile = document.querySelector('#popupEditProfile');
 const formUserInfo = document.forms['user-add-info'];
 const formAddNewCard = document.forms['add-new-mesto'];
+const formEditAvatar = document.forms['edit-avatar'];
+const avatarLink = document.querySelector('#avatar-link');
+const popupAvatar = document.querySelector('#popupEditAvatar');
 const userName = document.querySelector('.profile__name');
 const userSubtitle = document.querySelector('.profile__subtitle');
 const userNameSubmit = document.querySelector('#profile-name');
@@ -13,7 +16,11 @@ const newCardTitle = document.querySelector('#card-title');
 const newCardLink = document.querySelector('#card-link');
 const postsArea = document.querySelector('.posts-area__posts-list');
 const buttonEditProfile = document.querySelector('.profile__edit-button');
+const buttonSaveProfile = document.querySelector('#save-profile-button');
 const buttonAddCard = document.querySelector('.profile__add-button');
+const buttonCreateCard = document.querySelector('#create-card-button');
+const buttonEditAvatar = document.querySelector('.profile__edit-avatar-button');
+const buttonUpdateAvatar = document.querySelector('#button-update-avatar');
 const imageInPopup = document.querySelector('#imageInPopup');
 const imagePopup = document.querySelector('#img-popup');
 const headerInPopupImg = document.querySelector('.popup__image-header');
@@ -67,6 +74,7 @@ export {
   popupEditProfile,
   formUserInfo,
   formAddNewCard,
+  formEditAvatar,
   userName,
   userSubtitle,
   userNameSubmit,
@@ -77,7 +85,9 @@ export {
   newCardLink,
   postsArea,
   buttonEditProfile,
+  buttonSaveProfile,
   buttonAddCard,
+  buttonCreateCard,
   imageInPopup,
   imagePopup,
   headerInPopupImg,
@@ -86,4 +96,8 @@ export {
   profileAvatar,
   cardData,
   userInfo,
+  avatarLink,
+  popupAvatar,
+  buttonEditAvatar,
+  buttonUpdateAvatar,
 };

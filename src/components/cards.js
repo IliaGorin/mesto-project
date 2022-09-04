@@ -53,6 +53,7 @@ function addLike(evt) {
   const cardId = card.dataset.cardId;
 
   evt.target.classList.toggle('posts-area__like_active');
+
   if (evt.target.classList.contains('posts-area__like_active')) {
     addLikeToAPI(cardId).then((data) => {
       card.dataset.likesCount = data.likes.length;
@@ -67,11 +68,8 @@ function addLike(evt) {
 }
 
 function delCard(evt) {
-  console.log(evt.target.previousElementSibling);
   const cardId = evt.target.previousElementSibling.dataset.cardId;
-  delCardfromServer(cardId).then((data) => {
-    console.log(data);
-  });
+  delCardfromServer(cardId).then((data) => {});
   evt.target.parentElement.remove();
 }
 

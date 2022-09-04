@@ -1,24 +1,4 @@
-// const config = {
-//   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-14',
-//   headers: {
-//     authorization: '26532032-c932-44be-aa06-105c74f5a87c',
-//     'Content-Type': 'application/json',
-//   },
-// };
-
 import { cardData, newCardLink, config } from './utils';
-
-// export const getInitialCards = () => {
-//   return fetch('https://nomoreparties.co/v1/plus-cohort-14/cards', {
-//     headers: {
-//       authorization: '26532032-c932-44be-aa06-105c74f5a87c',
-//     },
-//   }).then((res) => {
-//     if (res.ok) {
-//       return res.json();
-//     }
-//   });
-// };
 
 const checkResponse = (res) => {
   if (res.ok) {
@@ -38,12 +18,12 @@ export const postUserInfo = (userInfo) => {
   }).then((res) => checkResponse(res));
 };
 
-export const postUserAvatar = () => {
+export const postUserAvatar = (avatarLink) => {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
-      avatar: 'https://i.postimg.cc/mrz87w2Z/mesto-avatar.jpg',
+      avatar: avatarLink,
     }),
   }).then((res) => checkResponse(res));
 };
