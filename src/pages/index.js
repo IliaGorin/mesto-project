@@ -34,26 +34,34 @@ import {
   postUserInfo,
   postNewCard,
   postUserAvatar,
+  delCardfromServer,
+  addLikeToAPI,
+  removeLikeFromAPI,
 } from '../components/api.js';
 
-// creating initial cards (from server)
+let myId = '';
+function setUserInfo(userInfo) {
+  userName.textContent = userInfo.name;
+  userSubtitle.textContent = userInfo.about;
+  profileAvatar.src = userInfo.avatar;
+  myId = userInfo._id;
+}
+
+function renderCard(card) {
+  cardData.name = card.name;
+  cardData.link = card.link;
+  cardData.owner._id = card.owner._id;
+  cardData._Id = card._id;
+  cardData.likes = card.likes;
+}
 
 Promise.all([getInitialCards(), getUserInfo()])
   .then(([initialCards, userInfo]) => {
+    setUserInfo(userInfo);
+
     initialCards.forEach((item) => {
-      cardData.name = item.name;
-      cardData.link = item.link;
-      cardData.owner._id = item.owner._id;
-      cardData._Id = item._id;
-      cardData.likes = item.likes;
-      postsArea.append(createNewCard(cardData));
-
-      userNameSubmit.setAttribute('value', userInfo.name);
-      userSubtitleSubmit.setAttribute('value', userInfo.about);
-
-      userName.textContent = userInfo.name;
-      userSubtitle.textContent = userInfo.about;
-      profileAvatar.src = userInfo.avatar;
+      renderCard(item);
+      postsArea.append(createNewCard(cardData, delCard, addLike, myId));
     });
   })
   .catch((err) => {
@@ -61,7 +69,6 @@ Promise.all([getInitialCards(), getUserInfo()])
   });
 
 // handler for add new card
-
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   cardData.name = newCardTitle.value;
@@ -69,13 +76,10 @@ function handleAddCardFormSubmit(evt) {
   buttonCreateCard.textContent = 'Сохранение...';
   postNewCard(cardData)
     .then((data) => {
-      cardData.name = data.name;
-      cardData.link = data.link;
-      cardData.owner._id = data.owner._id;
-      cardData._Id = data._id;
-      cardData.likes = data.likes;
-      const newCard = createNewCard(cardData);
-      postsArea.prepend(newCard);
+      renderCard(data);
+      postsArea.prepend(createNewCard(cardData, delCard, addLike, myId));
+      formAddNewCard.reset();
+      closePopup(popupAddCard);
     })
     .catch((err) => {
       console.log(err);
@@ -83,16 +87,11 @@ function handleAddCardFormSubmit(evt) {
     .finally(() => {
       buttonCreateCard.textContent = 'Создать';
     });
-
-  formAddNewCard.reset();
-
-  closePopup(popupAddCard);
 }
 
 formAddNewCard.addEventListener('submit', handleAddCardFormSubmit);
 
 // handler for edit profile
-
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
@@ -103,6 +102,7 @@ function handleProfileFormSubmit(evt) {
     .then((data) => {
       userName.textContent = data.name;
       userSubtitle.textContent = data.about;
+      closePopup(popupEditProfile);
     })
     .catch((err) => {
       console.log(err);
@@ -110,14 +110,11 @@ function handleProfileFormSubmit(evt) {
     .finally(() => {
       buttonSaveProfile.textContent = 'Сохранить';
     });
-
-  closePopup(popupEditProfile);
 }
 
 formUserInfo.addEventListener('submit', handleProfileFormSubmit);
 
 // handler for update avatar
-
 function handleEditAvatarForm(evt) {
   evt.preventDefault();
 
@@ -125,6 +122,8 @@ function handleEditAvatarForm(evt) {
   postUserAvatar(avatarLink.value)
     .then((data) => {
       profileAvatar.src = data.avatar;
+      avatarLink.value = '';
+      closePopup(popupAvatar);
     })
     .catch((err) => {
       console.log(err);
@@ -132,9 +131,6 @@ function handleEditAvatarForm(evt) {
     .finally(() => {
       buttonUpdateAvatar.textContent = 'Сохранить';
     });
-  avatarLink.value = '';
-
-  closePopup(popupAvatar);
 }
 
 formEditAvatar.addEventListener('submit', handleEditAvatarForm);
@@ -148,7 +144,36 @@ buttonAddCard.addEventListener('click', () => {
 });
 
 buttonEditProfile.addEventListener('click', () => {
+  userNameSubmit.setAttribute('value', userName.textContent);
+  userSubtitleSubmit.setAttribute('value', userSubtitle.textContent);
   openPopup(popupEditProfile);
 });
+
+//card handlers
+function delCard(evt) {
+  const cardId = evt.target.previousElementSibling.dataset.cardId;
+  delCardfromServer(cardId).then((data) => {});
+  evt.target.parentElement.remove();
+}
+
+function addLike(evt) {
+  const card =
+    evt.target.parentElement.parentElement.parentElement.firstElementChild;
+  const cardId = card.dataset.cardId;
+
+  evt.target.classList.toggle('posts-area__like_active');
+
+  if (evt.target.classList.contains('posts-area__like_active')) {
+    addLikeToAPI(cardId).then((data) => {
+      card.dataset.likesCount = data.likes.length;
+      evt.target.nextElementSibling.textContent = data.likes.length;
+    });
+  } else {
+    removeLikeFromAPI(cardId).then((data) => {
+      card.dataset.likesCount = data.likes.length;
+      evt.target.nextElementSibling.textContent = data.likes.length;
+    });
+  }
+}
 
 enableValidation(parameters);

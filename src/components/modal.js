@@ -32,14 +32,12 @@ popups.forEach((popup) => {
 
 // function for generation popup overlay with fullscreen image
 function generatePopupImage(evt) {
-  if (evt.target.classList.contains('posts-area__image')) {
-    openPopup(imagePopup);
-    imageInPopup.src = evt.target.src;
-    imageInPopup.alt = evt.target.alt;
-    headerInPopupImg.textContent = evt.target
-      .closest('.posts-area__post-card')
-      .querySelector('.posts-area__title').textContent;
-  }
+  openPopup(imagePopup);
+  imageInPopup.src = evt.target.src;
+  imageInPopup.alt = evt.target.alt;
+  headerInPopupImg.textContent = evt.target
+    .closest('.posts-area__post-card')
+    .querySelector('.posts-area__title').textContent;
 }
 
 export { openPopup, closePopup, generatePopupImage };

@@ -1,5 +1,3 @@
-const MY_ID = '07e030ff3f0c4352079f4dab';
-
 const popupEditProfile = document.querySelector('#popupEditProfile');
 const formUserInfo = document.forms['user-add-info'];
 const formAddNewCard = document.forms['add-new-mesto'];
@@ -70,7 +68,6 @@ const userInfo = {
 
 export {
   config,
-  MY_ID,
   popupEditProfile,
   formUserInfo,
   formAddNewCard,
