@@ -1,5 +1,9 @@
 import './index.css';
-import { openPopup, closePopup } from '../components/modal.js';
+import {
+  openPopup,
+  closePopup,
+  generatePopupImage,
+} from '../components/modal.js';
 import { createNewCard } from '../components/cards.js';
 import { enableValidation } from '../components/validate.js';
 import {
@@ -34,7 +38,7 @@ import {
   postUserInfo,
   postNewCard,
   postUserAvatar,
-  delCardfromServer,
+  deleteCardfromServer,
   addLikeToAPI,
   removeLikeFromAPI,
 } from '../components/api.js';
@@ -61,7 +65,9 @@ Promise.all([getInitialCards(), getUserInfo()])
 
     initialCards.forEach((item) => {
       renderCard(item);
-      postsArea.append(createNewCard(cardData, delCard, addLike, myId));
+      postsArea.append(
+        createNewCard(cardData, deleteCard, addLike, myId, generatePopupImage)
+      );
     });
   })
   .catch((err) => {
@@ -77,7 +83,9 @@ function handleAddCardFormSubmit(evt) {
   postNewCard(cardData)
     .then((data) => {
       renderCard(data);
-      postsArea.prepend(createNewCard(cardData, delCard, addLike, myId));
+      postsArea.prepend(
+        createNewCard(cardData, deleteCard, addLike, myId, generatePopupImage)
+      );
       formAddNewCard.reset();
       closePopup(popupAddCard);
     })
@@ -150,9 +158,13 @@ buttonEditProfile.addEventListener('click', () => {
 });
 
 //card handlers
-function delCard(evt) {
+function deleteCard(evt) {
   const cardId = evt.target.previousElementSibling.dataset.cardId;
-  delCardfromServer(cardId).then((data) => {});
+  deleteCardfromServer(cardId)
+    .then((data) => {})
+    .catch((err) => {
+      console.log(err);
+    });
   evt.target.parentElement.remove();
 }
 
@@ -164,15 +176,23 @@ function addLike(evt) {
   evt.target.classList.toggle('posts-area__like_active');
 
   if (evt.target.classList.contains('posts-area__like_active')) {
-    addLikeToAPI(cardId).then((data) => {
-      card.dataset.likesCount = data.likes.length;
-      evt.target.nextElementSibling.textContent = data.likes.length;
-    });
+    addLikeToAPI(cardId)
+      .then((data) => {
+        card.dataset.likesCount = data.likes.length;
+        evt.target.nextElementSibling.textContent = data.likes.length;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   } else {
-    removeLikeFromAPI(cardId).then((data) => {
-      card.dataset.likesCount = data.likes.length;
-      evt.target.nextElementSibling.textContent = data.likes.length;
-    });
+    removeLikeFromAPI(cardId)
+      .then((data) => {
+        card.dataset.likesCount = data.likes.length;
+        evt.target.nextElementSibling.textContent = data.likes.length;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
 

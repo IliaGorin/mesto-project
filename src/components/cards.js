@@ -1,9 +1,13 @@
 import { templatePostsArea } from './utils.js';
-import { generatePopupImage } from './modal.js';
-// import { myID } from '../pages/index.js';
 
 // function for create new card
-function createNewCard(cardData, delCard, addLike, myId) {
+function createNewCard(
+  cardData,
+  deleteCard,
+  addLike,
+  myId,
+  generatePopupImage
+) {
   const postWithImg = templatePostsArea.cloneNode(true);
   const imgSrc = postWithImg.querySelector('.posts-area__image');
   const cardTitle = postWithImg.querySelector('.posts-area__title');
@@ -30,7 +34,7 @@ function createNewCard(cardData, delCard, addLike, myId) {
     cardButtonRemove.setAttribute('style', 'display:none');
   }
 
-  cardButtonRemove.addEventListener('click', delCard);
+  cardButtonRemove.addEventListener('click', deleteCard);
   cardLike.addEventListener('click', addLike);
   imgSrc.addEventListener('click', generatePopupImage);
 

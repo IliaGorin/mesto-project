@@ -48,7 +48,7 @@ export const getInitialCards = () => {
   }).then((res) => checkResponse(res));
 };
 
-export const delCardfromServer = (cardId) => {
+export const deleteCardfromServer = (cardId) => {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
     headers: config.headers,
