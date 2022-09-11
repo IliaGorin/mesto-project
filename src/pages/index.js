@@ -5,7 +5,7 @@ import {
   generatePopupImage,
 } from '../components/modal.js';
 import { createNewCard } from '../components/cards.js';
-import { enableValidation } from '../components/validate.js';
+import { enableValidation, toggleButtonState } from '../components/validate.js';
 import {
   popupEditProfile,
   formAddNewCard,
@@ -86,8 +86,10 @@ function handleAddCardFormSubmit(evt) {
       postsArea.prepend(
         createNewCard(cardData, deleteCard, addLike, myId, generatePopupImage)
       );
-      formAddNewCard.reset();
       closePopup(popupAddCard);
+      formAddNewCard.reset();
+      buttonCreateCard.classList.add('popup__save-button_disabled');
+      buttonCreateCard.setAttribute('disabled', 'disabled');
     })
     .catch((err) => {
       console.log(err);

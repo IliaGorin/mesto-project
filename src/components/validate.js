@@ -75,4 +75,4 @@ function enableValidation(parameters) {
   });
 }
 
-export { enableValidation };
+export { enableValidation, toggleButtonState };
